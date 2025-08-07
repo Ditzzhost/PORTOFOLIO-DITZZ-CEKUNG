@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PORTOFOLIO DITZZ HOSTING</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #041c24;
+      color: white;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .navbar .menu-toggle svg rect {
+      fill: white;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-title img {
+      width: 40px;
+      height: 40px;
+    }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+    section {
+      padding: 40px 20px;
+    }
+    .about-text[contenteditable="true"] {
+      outline: 2px dashed red;
+      padding: 10px;
+    }
+    button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    #logoutBtn {
+      background: lime;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo-title">
+      <img src="o.png" alt="Logo DH">
+      <span>Ditzz Hosting</span>
+    </div>
+    <div class="menu">
+      <a href="#profil">Beranda</a>
+      <a href="#about">Tentang</a>
+      <a href="#project">Projects</a>
+      <a href="#" onclick="openLoginModal()">Admin</a>
+      <a href="#" onclick="logoutAdmin()" id="logoutBtn" style="display:none">Logout</a>
+    </div>
+  </div>  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-text" id="aboutText" contenteditable="false">
+      <p>Hi! I'm <strong>Ditzz Hosting</strong>, a passionate web developer with a love for clean design and interactive UI.</p>
+      <p>When I'm not coding, you'll find me exploring new tech, watching anime, or building bots that automate the boring stuff.</p>
+    </div>
+    <br>
+    <button id="editAboutBtn" style="display:none">Edit About</button>
+    <button id="saveAboutBtn" style="display:none">Simpan</button>
+  </section>  <!-- Login Modal -->  <div id="loginModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; color:black; padding:30px; border-radius:12px; position:relative; width:300px;">
+      <span onclick="closeLoginModal()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold;">&times;</span>
+      <h2>Admin Login</h2>
+      <input id="username" type="text" placeholder="Username" style="width:100%; padding:10px; margin-bottom:10px;"><br>
+      <input id="password" type="password" placeholder="Password" style="width:100%; padding:10px;"><br><br>
+      <button onclick="submitLogin()">Login</button>
+    </div>
+  </div>  <script>
+    function openLoginModal() {
+      document.getElementById("loginModal").style.display = "flex";
+    }
+
+    function closeLoginModal() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    function submitLogin() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === "admin" && pass === "123") {
+        localStorage.setItem("isAdmin", "true");
+        closeLoginModal();
+        location.reload();
+      } else {
+        alert("Login gagal!");
+      }
+    }
+
+    function logoutAdmin() {
+      localStorage.removeItem("isAdmin");
+      location.reload();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const isAdmin = localStorage.getItem("isAdmin") === "true";
+      const aboutText = document.getElementById("aboutText");
+      const editBtn = document.getElementById("editAboutBtn");
+      const saveBtn = document.getElementById("saveAboutBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (isAdmin) {
+        if (editBtn && saveBtn && aboutText) {
+          editBtn.style.display = "inline-block";
+          saveBtn.style.display = "inline-block";
+          aboutText.setAttribute("contenteditable", "true");
+
+          if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+          const savedContent = localStorage.getItem("aboutContent");
+          if (savedContent) {
+            aboutText.innerHTML = savedContent;
+          }
+
+          saveBtn.addEventListener("click", function () {
+            localStorage.setItem("aboutContent", aboutText.innerHTML);
+            alert("Konten berhasil disimpan!");
+          });
+        }
+      } else {
+        const savedContent = localStorage.getItem("aboutContent");
+        if (savedContent) {
+          document.getElementById("aboutText").innerHTML = savedContent;
+        }
+      }
+    });
+  </script></body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PORTOFOLIO DITZZ HOSTING</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="navbar-container" id="navbarContainer">
+    <div class="navbar-stroke-desktop"></div>
+    <div class="navbar-stroke-mobile"></div>
+    <div class="navbar">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="10"></rect>
+          <rect y="30" width="100" height="10"></rect>
+          <rect y="60" width="100" height="10"></rect>
+        </svg>
+      </button>
+
+      <div class="logo-title">
+        <img src="o.png" alt="Logo DH">
+        <span>Ditzz Hosting</span>
+      </div>
+
+      <div class="menu" id="menu">
+        <div class="menu-left">
+          <a href="#profil">Beranda</a>
+          <a href="#about">Tentang</a>
+          <a href="#projects">projects</a>
+        </div>
+        <div class="menu-right">
+          <a href="#keahlian">keahlian</a>
+          <a href="#kontak">Kontak</a>
+          <a href="#" class="admin-link" onclick="openLoginModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-shield" height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zM12 21c-4.41-1.08-7-5.31-7-10V6.3l7-3.11 7 3.11V11c0 4.69-2.59 8.92-7 10z" />
+            </svg>
+            <span class="admin-text">Admin</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE SECTION -->
+<section class="profile-section" id="profil">
+  <div class="profile-grid">
+    <div class="profile-image">
+      <img src="profil.png" alt="Foto Profil" />
+    </div>
+    <div class="profile-info">
+      <h1 class="profile-name">WELLCOME MY PORTFOLIO</h1>
+      <p class="profile-description">
+        <span id="typed-text"></span>
+      </p>
+      <a href="#profil" class="btn-profil">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <img src="https://i.ibb.co/tqLjFtb/your-photo.jpg" alt="About Photo" class="about-photo">
+        <div class="about-text">
+          <p>
+            Hi! I'm <strong>Ditzz Hosting</strong>, a passionate web developer with a love for clean design and interactive UI.
+            I specialize in HTML, CSS, and JavaScript, and enjoy creating modern websites with smooth user experiences.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new tech, watching anime, or building bots that automate the boring stuff.
+          </p>
+          <a href="#profil" class="btn-about">View Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT SECTION -->
+  <section class="projects" id="projects">
+    <h2>Proyek Unggulan</h2>
+    <div class="project-grid">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/600x400" alt="Linktree Clone">
+        </div>
+        <div class="card-body">
+          <h3>Linktree Clone</h3>
+          <p>Aplikasi sederhana untuk menampilkan semua tautan penting dalam satu halaman.</p>
+          <span class="tech">HTML, CSS, JavaScript</span>
+          <div class="card-buttons">
+            <a href="#" class="btn">Demo</a>
+            <a href="#" class="btn secondary">Source</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/600x400" alt="Kasir Web App">
+        </div>
+        <div class="card-body">
+          <h3>Kasir Web App</h3>
+          <p>Aplikasi kasir berbasis web dengan fitur laporan dan cetak struk.</p>
+          <span class="tech">React, Firebase</span>
+          <div class="card-buttons">
+            <a href="#" class="btn">Demo</a>
+            <a href="#" class="btn secondary">Source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Login Modal Stylish -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeLoginModal()">&times;</span>
+    <h2><i class="fas fa-shield-alt"></i> Admin Login</h2>
+    <form id="loginForm" style="display: flex; flex-direction: column;">
+      <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button id="loginButton" type="submit" class="btn-login">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Popup Login Success Notification -->
+<div id="notifSuccess" class="notif-success">
+  <div class="notif-glass">
+    <div class="icon-check">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>Login Berhasil</h2>
+    <p>Selamat datang kembali, Admin.</p>
+  </div>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <p>Loading...</p>
+</div>
+
+<div id="loginSuccessNotif" class="notif-success">
+  <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 24 24" fill="limegreen">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 6.62 5.37 12 12 12s12-5.38 12-12c0-6.63-5.37-12-12-12zm-1 17.93l-5.65-5.66L7.76 10l3.24 3.24L18.24 6 20 7.76 11 17.93z" />
+  </svg>
+  <div class="text">
+    <strong>Berhasil Masuk!</strong><br>
+    Selamat datang kembali, Admin 😎
+  </div>
+</div>
+
+  <!-- SCRIPT -->
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const container = document.getElementById("navbarContainer");
+    
+    if (menu.classList.contains("show")) {
+      menu.classList.remove("show");
+      container.classList.remove("menu-open");
+    } else {
+      menu.classList.remove("show");
+      void menu.offsetWidth;
+      menu.classList.add("show");
+      container.classList.add("menu-open");
+    }
+  }
+  
+  function handleResize() {
+    const menu = document.getElementById("menu");
+    const container = document.getElementById("navbarContainer");
+    
+    if (window.innerWidth > 768) {
+      menu.classList.add("show");
+      container.classList.remove("menu-open");
+    } else {
+      menu.classList.remove("show");
+      container.classList.remove("menu-open");
+    }
+  }
+  
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("DOMContentLoaded", handleResize);
+  
+  // === Modal Login Functions ===
+  function openLoginModal() {
+    document.getElementById("loginModal").style.display = "flex";
+  }
+  
+  function closeLoginModal() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    const modal = document.getElementById("loginModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  
+  function toggleLoginForm() {
+    const form = document.getElementById("loginForm");
+    form.style.display = (form.style.display === "flex") ? "none" : "flex";
+  }
+  
+  function showLoginLoading() {
+    const loading = document.getElementById("loadingOverlay");
+    loading.style.display = "flex";
+    
+    setTimeout(() => {
+      loading.style.display = "none";
+      showSuccessNotification();
+    }, 2000);
+  }
+  
+  function showSuccessNotification() {
+    const notif = document.getElementById("loginSuccessNotif");
+    notif.classList.add("show");
+    
+    setTimeout(() => {
+      notif.classList.remove("show");
+      window.location.href = "admin.html";
+    }, 2500);
+  }
+  
+  // === LOGIN BUTTON HANDLER WITH VALIDATION ===
+  document.getElementById("loginButton").addEventListener("click", function(e) {
+    e.preventDefault();
+    
+    const usernameInput = document.getElementById("username").value;
+    const passwordInput = document.getElementById("password").value;
+    
+    const correctUsername = "admin";
+    const correctPassword = "12345";
+    
+    if (usernameInput === correctUsername && passwordInput === correctPassword) {
+      showLoginLoading();
+    } else {
+      alert("Username atau Password salah!");
+    }
+  });
+  
+  const descriptionText =
+    "Developer | Designer | Hosting Specialist\nPassionate in building beautiful, fast, and secure websites.";
+  
+  const typedText = document.getElementById("typed-text");
+  const cursor = document.getElementById("typing-cursor");
+  
+  let index = 0;
+  let isDeleting = false;
+  
+  function loopTyping() {
+    let visibleText = descriptionText.substring(0, index);
+    
+    // Gabungkan teks dan cursor dalam 1 innerHTML
+    typedText.innerHTML = visibleText.replace(/\n/g, "<br>") + '<span id="typing-cursor">|</span>';
+    
+    if (!isDeleting) {
+      index++;
+      if (index <= descriptionText.length) {
+        setTimeout(loopTyping, 50);
+      } else {
+        setTimeout(() => {
+          isDeleting = true;
+          loopTyping();
+        }, 2000);
+      }
+    } else {
+      index--;
+      if (index >= 0) {
+        setTimeout(loopTyping, 30);
+      } else {
+        isDeleting = false;
+        setTimeout(loopTyping, 500);
+      }
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", loopTyping);
+</script>
+</body>
+</html>
